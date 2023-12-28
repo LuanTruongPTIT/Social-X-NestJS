@@ -18,5 +18,12 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "esModuleInterop": true,
-  }
+    "paths": {
+         "@social/*": ["src/*"],
+         "~@common/*": ["src/common/*"],
+         "~@modules/*": ["src/modules/*"],
+        
+    },
+    "plugins": [{ "transform": "typescript-transform-paths" }]
+ }
 }
