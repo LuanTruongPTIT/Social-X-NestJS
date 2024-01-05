@@ -22,6 +22,18 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  redis:
+    image: redislabs/redismod:latest
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data_social:/data
+  redisinsight:
+    image: redislabs/redisinsight
+    ports:
+      - '8001:8001'
+
 volumes:
   docker_data:
   postgresql_data:
+  redis_data_social:

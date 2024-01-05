@@ -14,7 +14,6 @@ export default async function (app: NestApplication) {
   const docDesc: string = configService.get<string>('docs.description');
   const docVersion: string = configService.get<string>('docs.version');
   const docPrefix: string = configService.get<string>('docs.prefix');
-  console.log('docPrefix', docPrefix);
   if (env !== ENUM_APP_ENVIRONMENT.PRODUCTION) {
     const documentBuild = new DocumentBuilder()
       .setTitle(docName)

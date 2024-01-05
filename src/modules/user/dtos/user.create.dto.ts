@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class UserCreateDtO {
+export class UserCreateDto {
   @ApiProperty({
     example: faker.internet.email(),
     required: true,
@@ -16,4 +16,11 @@ export class UserCreateDtO {
     required: true,
   })
   password: string;
+
+  @ApiProperty({
+    example: faker.internet.userName(),
+    nullable: true,
+    required: false,
+  })
+  username: string;
 }

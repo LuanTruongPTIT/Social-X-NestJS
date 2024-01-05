@@ -8,6 +8,9 @@ import { validate } from '../validate';
 import { DatabaseOptionModule } from './database/database.options.module';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { AwsModule } from './aws/aws.module';
+import { ErrorModule } from './error/error.module';
+import { HelperModule } from './helper/helper.module';
+import { HashtagRepositoryModule } from './database/repository/hashtag.repository.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -32,18 +35,9 @@ import { AwsModule } from './aws/aws.module';
         return new DataSource(options).initialize();
       },
     }),
+    HashtagRepositoryModule,
+    ErrorModule,
+    HelperModule,
   ],
 })
-export class CommonModule {
-  constructor(private readonly configService: ConfigService) {
-    this.test();
-  }
-
-  test() {
-    const port = console.log(
-      this.configService.get<string>('aws.coginto.userPoolId'),
-    );
-
-    console.log(port);
-  }
-}
+export class CommonModule {}

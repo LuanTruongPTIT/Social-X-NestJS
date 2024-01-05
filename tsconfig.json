@@ -2,6 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "declaration": true,
+    // "moduleResolution": "NodeNext",
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -18,12 +19,15 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "esModuleInterop": true,
+    
     "paths": {
          "@social/*": ["src/*"],
          "~@common/*": ["src/common/*"],
          "~@modules/*": ["src/modules/*"],
         
     },
-    "plugins": [{ "transform": "typescript-transform-paths" }]
- }
+    "plugins": [{ "transform": "typescript-transform-paths" }],
+
+ },
+ "include": ["./src/**/*"],
 }

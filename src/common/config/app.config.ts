@@ -13,12 +13,13 @@ export default registerAs(
       version: process.env.HTTP_VERSION ?? '1',
     },
     globalPrefix: '/api',
+
     http: {
       enable: process.env.HTTP_ENABLE === 'true' ?? false,
       host: process.env.HTTP_HOST ?? 'localhost',
       port: process.env.HTTP_PORT
         ? Number.parseInt(process.env.HTTP_PORT)
-        : 3000,
+        : 4000,
     },
   }),
 );

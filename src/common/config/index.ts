@@ -2,4 +2,11 @@ import databaseConfig from './database.config';
 import appConfig from './app.config';
 import docsConfig from './docs.config';
 import awsConfig from './aws.config';
-export const config = [databaseConfig, appConfig, docsConfig, awsConfig];
+import tweetConfig from './tweet.config';
+export const config = [
+  databaseConfig,
+  appConfig,
+  docsConfig,
+  awsConfig,
+  tweetConfig,
+];
