@@ -18,7 +18,7 @@ import { HashtagRepositoryModule } from './database/repository/hashtag.repositor
       isGlobal: true,
       envFilePath: ['.env'],
       expandVariables: true,
-      // validate,
+      validate,
       // validationSchema: Joi.object({
       //   DATABASE_NAME: Joi.string().default('twitter').required,
       //   DATABASE_USER: Joi.string().required(),
@@ -36,7 +36,7 @@ import { HashtagRepositoryModule } from './database/repository/hashtag.repositor
       },
     }),
     HashtagRepositoryModule,
-    ErrorModule,
+    // ErrorModule,
     HelperModule,
   ],
 })

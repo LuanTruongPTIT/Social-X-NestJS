@@ -4,6 +4,7 @@
 /.env
 /uploads
 /data
+/client
 # Logs
 logs
 *.log

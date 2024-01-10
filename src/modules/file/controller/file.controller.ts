@@ -60,7 +60,7 @@ export class FileController {
       this.helperFileService.GetAddressDirectory(UPLOAD_VIDEO_TWEET);
     const destinationDirectory = this.helperFileService.GetAddressDirectory(
       UPLOAD_VIDEO_DIR,
-      'LLhcAWczhXI-_AOdVbHhG',
+      idName,
     );
     const sourceFilePath = this.helperFileService.JoinWithFile(
       sourceDirectory,
@@ -76,16 +76,9 @@ export class FileController {
       fileName,
     };
 
-    // this.helperFileService.MoveFile(sourceFilePath, destinationFilePath);
+    this.helperFileService.MoveFile(sourceFilePath, destinationFilePath);
     await this.encodeVideo.add('encode-video-hls', data);
-    return (
-      this.baseurl +
-      '/video-hls' +
-      '/' +
-      'LLhcAWczhXI-_AOdVbHhG' +
-      '/' +
-      'master.m3u8'
-    );
+    return this.baseurl + '/video-hls' + '/' + idName + '/' + 'master.m3u8';
   }
 
   @Get('/video-hls/:id/master.m3u8')
@@ -107,13 +100,5 @@ export class FileController {
     const videoPath = path.resolve(UPLOAD_VIDEO_DIR, id, v, segment);
     console.log(videoPath);
     res.sendFile(videoPath);
-  }
-
-  @Get('/test')
-  async test() {
-    const result = this.helperFileService.GetFile(
-      path.resolve(UPLOAD_VIDEO_DIR, 'ZLI2Z6UgVQBued_Wqnt_T'),
-    );
-    console.log(result);
   }
 }
