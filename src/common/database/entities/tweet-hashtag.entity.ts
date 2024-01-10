@@ -1,11 +1,12 @@
 import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { HashTagEntity } from './hashtag.entity';
 import { TweetEntity } from './tweet.entity';
+import { DatabaseTypeormBaseEntityAbstract } from '../base/database.typeorm.base.entity';
 
 @Entity({ name: 'tweet_hashtag' })
-export class TweetHashTagEntity {
-  @PrimaryColumn({ name: 'hashtag_id' })
-  hashTagId: string;
+export class TweetHashTagEntity extends DatabaseTypeormBaseEntityAbstract {
+  @PrimaryColumn({ name: 'hashtag_id', array: false })
+  hashTagId: string[];
 
   @PrimaryColumn({ name: 'tweet_id' })
   tweetId: string;

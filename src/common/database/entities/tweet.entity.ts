@@ -18,16 +18,28 @@ import { UserEntity } from './user.entity';
 @Entity({ name: 'tweet' })
 export class TweetEntity extends DatabaseTypeormBaseEntityAbstract {
   @Column({ enum: TweetType })
-  type: TweetType;
+  type: string;
 
   @Column({ enum: TweetAudience })
-  audience: TweetAudience;
+  audience: string;
 
   @Column({})
   content: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, default: '' })
   parent_id: null | string;
+
+  @Column({ nullable: true })
+  guest_views: number;
+
+  @Column({ nullable: true })
+  user_views: number;
+
+  @Column({ type: 'jsonb', array: false })
+  media: Media[];
+
+  @Column({})
+  user_id: string;
 
   @ManyToMany(() => HashTagEntity, (hashtag) => hashtag.tweet)
   @JoinTable({
@@ -42,18 +54,6 @@ export class TweetEntity extends DatabaseTypeormBaseEntityAbstract {
     },
   })
   hashTags: HashTagEntity[];
-
-  @Column({ nullable: true })
-  guest_views: number;
-
-  @Column({ nullable: true })
-  user_views: number;
-
-  @Column({ type: 'jsonb', array: true })
-  media: Media[];
-
-  @Column({})
-  user_id: string;
 
   @ManyToOne(() => UserEntity, (user) => user.id)
   @JoinColumn({ name: 'user_id' })
