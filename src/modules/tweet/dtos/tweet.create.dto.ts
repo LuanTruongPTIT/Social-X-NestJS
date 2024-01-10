@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker';
 import { ApiProperty } from '@nestjs/swagger';
 import {
   Media,
@@ -8,6 +9,7 @@ import { Type } from 'class-transformer';
 import {
   IsArray,
   IsEnum,
+  IsNotEmpty,
   IsOptional,
   IsString,
   MaxLength,
@@ -47,7 +49,7 @@ export class CreateTweetDto {
     default: '',
   })
   @IsOptional()
-  parent_id: null | string[];
+  parent_id: null | string;
 
   @ApiProperty({
     required: false,
@@ -72,4 +74,14 @@ export class CreateTweetDto {
   })
   @IsArray()
   media: Media[];
+
+  @ApiProperty({
+    required: true,
+    nullable: false,
+    example: faker.string.uuid(),
+  })
+  @IsNotEmpty()
+  @IsString()
+  @Type(() => String)
+  user_id: string;
 }
