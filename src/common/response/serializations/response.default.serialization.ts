@@ -25,27 +25,6 @@ export class ResponseDefaultSerialization<T = Record<string, any>> {
   statusCode: number;
 
   @ApiProperty({
-    name: 'message',
-    required: true,
-    nullable: false,
-    description: 'Message base on language',
-    oneOf: [
-      {
-        type: 'string',
-        example: 'message endpoint',
-      },
-      {
-        type: 'object',
-        example: {
-          en: 'This is test endpoint.',
-          id: 'Ini adalah endpoint test',
-        },
-      },
-    ],
-  })
-  message: string;
-
-  @ApiProperty({
     name: '_metadata',
     required: true,
     nullable: false,
