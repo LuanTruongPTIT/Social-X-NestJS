@@ -58,12 +58,6 @@ export class UserEntity extends DatabaseTypeormBaseEntityAbstract {
   @Column({ nullable: true })
   blockedDate?: Date;
 
-  @Column('text', { array: true, nullable: true })
-  followers: string[];
-
-  @Column('text', { array: true, nullable: true })
-  following: string[];
-
   @Column({ nullable: true })
   follower_count: number;
 
