@@ -5,7 +5,8 @@ import { UserCreateDto } from '../dtos/user.create.dto';
 import { UserService } from '../services/user.service';
 import { UserLoginDto } from '../dtos/user.login.dto';
 import { Response } from '@social/common/response/decorators/response.decorator';
-import { UserPublicSignUpDoc } from '../doc/user.doc';
+import { UserPublicSignInDoc, UserPublicSignUpDoc } from '../doc/user.doc';
+import { UserVerify } from '../dtos/user.verify';
 
 @ApiTags('modules.user')
 @Controller({
@@ -35,7 +36,7 @@ export class UserController {
     }
   }
 
-  @UserPublicSignUpDoc()
+  @UserPublicSignInDoc()
   @Response('user.signIn')
   @Post('/login')
   async SignIn(@Body() data: UserLoginDto) {
@@ -50,6 +51,28 @@ export class UserController {
       };
     } catch (error) {
       console.log(error, 'error');
+      throw new BadRequestException(error);
+    }
+  }
+
+  @Response('user.verify-email')
+  @Post('/verify-email')
+  async VerifyUser(data: UserVerify) {
+    const { email, verificationCode } = data;
+    try {
+      const result = await this.awsCognitoService.verifyUser(
+        email,
+        verificationCode,
+      );
+      console.log(result);
+      return {
+        data: {
+          message: 'Verify success',
+          statusCode: 201,
+        },
+      };
+    } catch (error) {
+      console.log(error);
       throw new BadRequestException(error);
     }
   }
