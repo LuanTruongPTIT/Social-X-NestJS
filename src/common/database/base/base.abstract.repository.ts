@@ -19,4 +19,12 @@ export abstract class BaseAbastractRepository<T extends BaseEntity>
   public async findByField(data: Record<string, any>): Promise<T> {
     return await this.repository.findOne({ where: data });
   }
+
+  public async increment(
+    conditions: Record<string, any>,
+    property: string,
+    value: number,
+  ) {
+    await this.repository.increment(conditions, property, value);
+  }
 }

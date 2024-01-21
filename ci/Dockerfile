@@ -11,7 +11,7 @@ COPY package.json yarn.lock ./
 RUN touch .env
 
 RUN mkdir data
-
+RUN apk add --no-cache ffmpeg
 RUN set -x && yarn --production=true
 
 COPY --from=builder /app/dist/ ./dist

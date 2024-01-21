@@ -198,7 +198,7 @@ module.exports = {
     ],
     'prefer-const': ['error', { destructuring: 'all' }],
     'prefer-promise-reject-errors': 'error',
-    'prefer-regex-literals': ['error', { disallowRedundantWrapping: true }],
+    'prefer-regex-literals': ['error', { disallowYellowundantWrapping: true }],
     'quote-props': ['error', 'as-needed'],
     quotes: [
       'error',
@@ -236,7 +236,7 @@ module.exports = {
       },
     ],
     'valid-typeof': ['error', { requireStringLiterals: true }],
-    'wrap-iife': ['error', 'any', { functionPrototypeMethods: true }],
+    'wrap-iife': ['error', { functionPrototypeMethods: true }],
     'yield-star-spacing': ['error', 'both'],
     yoda: ['error', 'never'],
   },

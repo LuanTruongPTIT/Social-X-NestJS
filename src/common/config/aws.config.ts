@@ -7,6 +7,7 @@ export default registerAs(
     cognito: {
       userPoolId: process.env.USER_POOL_ID,
       clientId: process.env.CLIENT_ID,
+      authority: `https://cognito-idp.${process.env.AWS_REGION}.amazonaws.com/${process.env.USER_POOL_ID}`,
     },
     s3: {
       credential: {

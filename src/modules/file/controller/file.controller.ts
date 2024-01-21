@@ -101,4 +101,7 @@ export class FileController {
     console.log(videoPath);
     res.sendFile(videoPath);
   }
+
+  @Post('')
+  async testHLS() {}
 }

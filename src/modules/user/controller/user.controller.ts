@@ -4,6 +4,8 @@ import { AwsCognitoService } from 'src/common/aws/services/aws.cognito.service';
 import { UserCreateDto } from '../dtos/user.create.dto';
 import { UserService } from '../services/user.service';
 import { UserLoginDto } from '../dtos/user.login.dto';
+import { Response } from '@social/common/response/decorators/response.decorator';
+import { UserPublicSignUpDoc } from '../doc/user.doc';
 
 @ApiTags('modules.user')
 @Controller({
@@ -16,6 +18,8 @@ export class UserController {
     private readonly userService: UserService,
   ) {}
 
+  @UserPublicSignUpDoc()
+  @Response('user.signUp')
   @Post('/create-user')
   async SignUp(@Body() data: UserCreateDto) {
     try {
@@ -31,6 +35,8 @@ export class UserController {
     }
   }
 
+  @UserPublicSignUpDoc()
+  @Response('user.signIn')
   @Post('/login')
   async SignIn(@Body() data: UserLoginDto) {
     try {

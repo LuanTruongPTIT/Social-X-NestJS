@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { config } from './config//index';
@@ -11,6 +11,10 @@ import { AwsModule } from './aws/aws.module';
 import { ErrorModule } from './error/error.module';
 import { HelperModule } from './helper/helper.module';
 import { HashtagRepositoryModule } from './database/repository/hashtag.repository.module';
+import { RedisModule } from './redis/redis.module';
+import { AuthModule } from './auth/auth.module';
+
+@Global()
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -38,6 +42,8 @@ import { HashtagRepositoryModule } from './database/repository/hashtag.repositor
     HashtagRepositoryModule,
     // ErrorModule,
     HelperModule,
+    RedisModule,
+    AuthModule.forRoot(),
   ],
 })
 export class CommonModule {}

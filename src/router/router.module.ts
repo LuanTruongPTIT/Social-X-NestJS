@@ -5,6 +5,7 @@ import { RoutesUserModule } from './routes/routes.user.module';
 import { RouterModule as NestJsRouterModule } from '@nestjs/core';
 import { RoutesTweetModule } from './routes/routes.tweet.module';
 import { RoutesFileModule } from './routes/routes.file.module';
+import { RoutesFollowModule } from './routes/routes.follow.module';
 @Module({})
 export class RouterModule {
   static forRoot(): DynamicModule {
@@ -20,6 +21,7 @@ export class RouterModule {
         RoutesUserModule,
         RoutesTweetModule,
         RoutesFileModule,
+        RoutesFollowModule,
         NestJsRouterModule.register([
           {
             path: '/user',
@@ -32,6 +34,10 @@ export class RouterModule {
           {
             path: '/file',
             module: RoutesFileModule,
+          },
+          {
+            path: '/follow',
+            module: RoutesFollowModule,
           },
         ]),
       );

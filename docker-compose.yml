@@ -1,39 +1,30 @@
-version: '3.9'
+version: '3.8'
+services:
+  # service:
+  #   build:
+  #     context: .
+  #     args:
+  #       NODE_ENV: 'development'
+  #   container_name: service
+  #   hostname: service
+  #   ports:
+  #     - 4000:4000
+  #   networks:
+  #     - app-net
+  #   volumes:
+  #     - ./src/:/app/src/
+  #     - .env/:/app/.env
+  #   restart: unless-stopped
+  nginx:
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - '81:81'
+    networks:
+      - app-net
+    # volumes:
+    #   - ./nginx/nginx.conf:/etc/nginx/nginx.conf
 networks:
   app-net:
     driver: bridge
-services:
-  db:
-    image: postgres:13
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: social_x
-    user: postgres
-    ports:
-      - '5432:5432'
-    volumes:
-      - postgresql_data:/var/lib/postgresql/data
-      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
-    networks:
-      - app-net
-    healthcheck:
-      test: ['CMD-SHELL', 'pg_isready']
-      interval: 10s
-      timeout: 5s
-      retries: 5
-  redis:
-    image: redislabs/redismod:latest
-    ports:
-      - '6379:6379'
-    volumes:
-      - redis_data_social:/data
-  redisinsight:
-    image: redislabs/redisinsight
-    ports:
-      - '8001:8001'
-
-volumes:
-  docker_data:
-  postgresql_data:
-  redis_data_social:

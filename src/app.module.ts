@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { CommonModule } from './common/common.module';
 import { RouterModule } from './router/router.module';
 import { BullModule } from '@nestjs/bullmq';
 import { ConfigService } from '@nestjs/config';
+import { TimelineGateWay } from './modules/timeline/controller/timeline.socket';
 
 @Module({
   imports: [
@@ -20,7 +19,7 @@ import { ConfigService } from '@nestjs/config';
       }),
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [TimelineGateWay],
 })
 export class AppModule {}
